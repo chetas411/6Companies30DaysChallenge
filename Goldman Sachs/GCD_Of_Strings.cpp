@@ -1,3 +1,5 @@
+
+// Solution 1: Trying every prefix starting from the smaller length till 1
 class Solution {
 public:
     string gcdOfStrings(string s1, string s2) {
@@ -44,5 +46,19 @@ public:
             }
         }
         return "";
+    }
+};
+
+// Solution 2:  GCD of strings if exists would be equal to the Prefix of length equal to 
+// the GCD of the lengths of the two strings
+class Solution {
+public:
+    int gcd(int a, int b){
+        if(a == 0) return b;
+        return gcd(b%a,a);
+    }
+    string gcdOfStrings(string str1, string str2) {
+        if(str1 + str2 != str2 + str1) return ""; // checking if GCD even exists or not
+        return str1.substr(0, gcd(str1.length(),str2.length()));
     }
 };
